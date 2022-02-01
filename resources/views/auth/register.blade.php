@@ -11,7 +11,7 @@
                 </header>
 
                 <form class="w-full px-6 space-y-6 sm:px-10 sm:space-y-8" method="POST"
-                    action="{{ route('register') }}">
+                    action="{{ route('register') }}" enctype="multipart/form-data">
                     @csrf
 
                     <div class="flex flex-wrap">
@@ -39,6 +39,21 @@
                             value="{{ old('email') }}" required autocomplete="email">
 
                         @error('email')
+                        <p class="text-red-500 text-xs italic mt-4">
+                            {{ $message }}
+                        </p>
+                        @enderror
+                    </div>
+
+                    <div class="flex flex-wrap">
+                        <label for="name" class="block text-gray-700 text-sm font-bold mb-2 sm:mb-4">
+                            {{ __('Profile Picture') }}:
+                        </label>
+
+                        <input id="name" type="file" class="form-input w-full @error('image')  border-red-500 @enderror"
+                               name="image" value="{{ old('image') }}" required autocomplete="name" autofocus accept="image/*">
+
+                        @error('image')
                         <p class="text-red-500 text-xs italic mt-4">
                             {{ $message }}
                         </p>

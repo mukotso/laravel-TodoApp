@@ -16,6 +16,12 @@ class TodosController extends Controller
 
         $todos=Todo::where('user_id', Auth()->user()->id)
             ->orderBy('created_at','DESC')->paginate(4);
+        foreach($todos as $todo){
+            $todo->present()-> getCreatedAtAttribute($todo->created_at);
+
+        }
+
+
         return view('todos',compact('todos'));
     }
 
@@ -30,8 +36,9 @@ class TodosController extends Controller
         $todo->status='pending_completion';
         $todo->user_id=Auth()->user()->id;
         $todo->save();
+        alert()->success('Todo added Successfully');
 
-        return redirect()->back()->with('success','Todo added succcessfully');
+        return redirect()->back();
     }
 
     public function edit($id)

@@ -1,17 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+Use App\Http\Controllers\PostsController;
+
 Use App\Http\Controllers\TodosController;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -24,3 +17,9 @@ Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->nam
 Route::resource('todo', TodosController::class);
 Route::get('todos/search', [\App\Http\Controllers\TodosController::class, 'search'])->name('todo.search');
 Route::get('todos/{id}/complete', [\App\Http\Controllers\TodosController::class, 'completeTodo'])->name('todo.complete');
+
+
+//posts
+//Route::resource('posts', PostsController::class);
+Route::get('posts', [\App\Http\Controllers\PostsController::class, 'index'])->name('posts.index');
+Route::get('posts/getPosts', [\App\Http\Controllers\PostsController::class, 'getPosts']);

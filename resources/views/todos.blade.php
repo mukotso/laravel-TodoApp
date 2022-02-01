@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+
+    @include('sweet::alert');
     <div class="container justify-center p-5 md:px-52 mx-auto">
         <div class="">
             <h1
