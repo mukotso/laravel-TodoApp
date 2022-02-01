@@ -2,37 +2,73 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Todo;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
+
 class PostsController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
+        $this->client = new Client();
     }
+
     public function index()
     {
-        alert()->success('welcome to posts');
-    return  view('posts.index');
+
+        alert()->success('welcome to postsAvailable Posts');
+        return view('posts.index');
 
     }
 
     public function getPosts()
     {
-        $response = Http::get('https://jsonplaceholder.typicode.com/posts');
-
-        return $response->json();
+        $response = $this->client->request('GET', 'https://jsonplaceholder.typicode.com/posts');
+        return $response->getBody();
     }
 
-    public function store(REQUEST $request){
+    public function store(REQUEST $request)
+    {
         $this->validate($request, [
             'title' => 'required',
             'body' => 'required',
             'userId' => 'required'
         ]);
-        $response=Http::post('https://jsonplaceholder.typicode.com/posts',$request->only('title', 'body', 'userId'));
-        return response()->json(json_decode($response));
+        $response = $this->client->request('POST', 'https://jsonplaceholder.typicode.com/posts', [
+            'form_params' => [
+                'title' => $request->title,
+                'body' => $request->body,
+                'userId' => $request->userId
+            ]
+        ]);
+        return $response->getBody();
+    }
+
+    public function destroy($id)
+    {
+        $response = $this->client->request('DELETE', 'https://jsonplaceholder.typicode.com/posts/' . $id);
+        return $response->getBody();
+    }
+
+    public function update(Request $request)
+    {
+        $this->validate($request, [
+            'title' => 'required',
+            'body' => 'required',
+            'userId' => 'required',
+            'id' => 'required'
+        ]);
+
+        $response = $this->client->request('PUT', 'https://jsonplaceholder.typicode.com/posts/' . $request->id,
+            [
+                'form_params' => [
+                    'title' => $request->title,
+                    'body' => $request->body,
+                    'userId' => $request->userId
+                ]
+            ]
+        );
+        return $response->getBody();
     }
 
 

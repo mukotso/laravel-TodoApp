@@ -23,3 +23,6 @@ Route::get('todos/{id}/complete', [\App\Http\Controllers\TodosController::class,
 //Route::resource('posts', PostsController::class);
 Route::get('posts', [\App\Http\Controllers\PostsController::class, 'index'])->name('posts.index');
 Route::get('posts/getPosts', [\App\Http\Controllers\PostsController::class, 'getPosts']);
+Route::post('post/store', [\App\Http\Controllers\PostsController::class, 'store'])->name('post.store');
+Route::get('delete/post/{id}', [\App\Http\Controllers\PostsController::class, 'destroy'])->name('destroy.post');
+Route::post('post/update/details', [\App\Http\Controllers\PostsController::class, 'update'])->name('update.post');

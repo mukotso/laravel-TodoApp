@@ -141,25 +141,23 @@
 
 
 </div>
+<style>
+    .grid{
+        width:100%;
+    }
+</style>
 
+        <div class="p-10 grid xs-grid-1   grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-10">
 
-    <div class="container-fluid justify-center p-5 md:px-52 mx-auto">
-
-        <div class="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-5">
             @foreach($todos as $todo)
 
-
-
-
-            <div class=" w-full rounded overflow-hidden shadow-lg bg-gray-300 hover:bg-green-600">
+            <div class="w-full rounded  shadow-lg bg-gray-300 hover:bg-green-600">
                 <div class="px-6 py-4">
                     <div class="font-bold text-xl mb-3 mt-3">Todo : {{$todo->name}} </div>
                     <div class="font-bold text-xl mb-3">Status : {{$todo->status}}</div>
                     <div class="font-bold text-xl mb-3">Created at : {{date_format(new DateTime($todo->created_at), 'F j, Y, g:i a') }}</div>
                 </div>
                 <div class="px-6 pt-4 pb-2">
-
-
 
                     <div class="flex">
                         @if($todo->status!='completed')
@@ -184,7 +182,7 @@
                         <form method="post" action="{{ route('todo.destroy', $todo->id) }}">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class=" ml-4 bg-red-600   font-semibold text-white sm:py-2 sm:px-4 py-4 px-8  rounded">
+                            <button type="submit" class="  ml-4 bg-red-600 hover:bg-blue-500  font-semibold text-white sm:py-2 sm:px-4 md:py-4 md:px-8 border border-blue-500 hover:border-transparent rounded">
                                 DELETE
                             </button>
 
@@ -192,7 +190,7 @@
 
                     @else
                         <button  class=" ml-4 bg-gray-900   font-bold text-white  py-10 px-16  rounded">
-                            COMPLETED ON : {{ date_format(new DateTime($todo->created_at), 'F j, Y, g:i a') }}
+                            COMPLETED ON : {{ $todo->updated_at }}
                         </button>
                 @endif
                 </div>
@@ -211,8 +209,6 @@
             </div>
         </div>
 
-    </div>
-    </div>
 
 
     <footer class="bg-gray-100 text-center lg:text-left">
