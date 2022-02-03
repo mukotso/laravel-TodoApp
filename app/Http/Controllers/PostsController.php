@@ -16,7 +16,6 @@ class PostsController extends Controller
     public function index()
     {
 
-        alert()->success('welcome to postsAvailable Posts');
         return view('posts.index');
 
     }
@@ -24,7 +23,8 @@ class PostsController extends Controller
     public function getPosts()
     {
         $response = $this->client->request('GET', 'https://jsonplaceholder.typicode.com/posts');
-        return $response->getBody();
+     return $response->getBody();
+
     }
 
     public function store(REQUEST $request)
@@ -55,16 +55,13 @@ class PostsController extends Controller
         $this->validate($request, [
             'title' => 'required',
             'body' => 'required',
-            'userId' => 'required',
-            'id' => 'required'
         ]);
 
-        $response = $this->client->request('PUT', 'https://jsonplaceholder.typicode.com/posts/' . $request->id,
+        $response = $this->client->request('PUT', 'https://jsonplaceholder.typicode.com/posts/' . 1,
             [
                 'form_params' => [
                     'title' => $request->title,
                     'body' => $request->body,
-                    'userId' => $request->userId
                 ]
             ]
         );

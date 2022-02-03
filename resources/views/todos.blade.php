@@ -22,7 +22,7 @@
             <label>Search Todo :</label>
             <input
                 type="text"
-                class="w-full
+                class="  w-1/3
               p-3
               mt-3
               outline-none
@@ -34,8 +34,8 @@
                 name="search"
                 required
             />
-            <button type="submit" class="bg-green-600 hover:bg-blue-500  font-semibold text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-                SEARCH
+            <button type="submit" class=" sm:w-1/2 md:w-1/6 bg-green-600 hover:bg-blue-500  font-semibold text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+              <i class="fa fa-search"></i> SEARCH
             </button>
         </form>
         @if(session()->has('todo'))
@@ -46,7 +46,7 @@
                     <label class="dark:text-white">EDIT TODO: </label>
                     <input
                         type="text"
-                        class="w-full
+                        class="w-1/3
               p-3
               mt-3
               outline-none
@@ -61,7 +61,7 @@
                     />
                     <button
                         class="
-              w-full
+              sm:w-1/2 md:w-1/6
               bg-green-600
               h-12
               text-white
@@ -87,7 +87,7 @@
                     <label class="dark:text-white">ADD NEW TODO : </label>
                     <input
                         type="text"
-                        class="w-full
+                        class="w-1/3
               p-3
               mt-3
               outline-none
@@ -102,7 +102,7 @@
                     />
                     <button
                         class="
-              w-full
+              sm:w-1/2 md:w-1/6
               bg-green-600
               h-12
               text-white
@@ -115,7 +115,7 @@
             "
                         type="submit"
                     >
-                        Add Todo
+                        <i class="fa fa-plus"> SAVE </i>
                     </button>
                 </form>
             </div>
@@ -126,18 +126,18 @@
 <br>
         <br>
 
-        @if (session('success'))
-            <div
-                class="text-sm border border-t-8 rounded text-green-700 border-green-600 bg-green-100 px-3 py-4 mb-4"
-                role="alert">
-                <div class="p-5 rounded-lg border border-green-400 bg-green-300 text-green-900">
-                    <h2 class="font-bold text-xl pb-2">Congratulations!</h2>
-                    <p class="pt-2">
-                        {{ session('success') }}
-                    </p>
-                </div>
-            </div>
-        @endif
+{{--        @if (session('success'))--}}
+{{--            <div--}}
+{{--                class="text-sm border border-t-8 rounded text-green-700 border-green-600 bg-green-100 px-3 py-4 mb-4"--}}
+{{--                role="alert">--}}
+{{--                <div class="p-5 rounded-lg border border-green-400 bg-green-300 text-green-900">--}}
+{{--                    <h2 class="font-bold text-xl pb-2">Congratulations!</h2>--}}
+{{--                    <p class="pt-2">--}}
+{{--                        {{ session('success') }}--}}
+{{--                    </p>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        @endif--}}
 
 
 </div>
@@ -164,7 +164,7 @@
                         <form method="get" action="{{ route('todo.complete', $todo->id) }}">
                             @csrf
                             <button type="submit" class="mb-4 bg-green-900 hover:bg-gray-200 hover:text-black  font-semibold text-white sm:py-2 sm:px-4 md:py-4 md:px-8 rounded">
-                                MARK AS COMPLETE
+                               MARK AS COMPLETE
                             </button>
 
                         </form>
@@ -173,53 +173,72 @@
                     <form method="get" action="{{ route('todo.edit', $todo->id) }}">
                         @csrf
                         <button type="submit" class=" ml-4 bg-blue-600 hover:bg-blue-500  font-semibold text-white sm:py-2 sm:px-4 md:py-4 md:px-8 border border-blue-500 hover:border-transparent rounded">
-                            EDIT
+                            <i class="fa fa-edit"></i>
                         </button>
 
                     </form>
 
 
-                        <form method="post" action="{{ route('todo.destroy', $todo->id) }}">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="  ml-4 bg-red-600 hover:bg-blue-500  font-semibold text-white sm:py-2 sm:px-4 md:py-4 md:px-8 border border-blue-500 hover:border-transparent rounded">
-                                DELETE
-                            </button>
 
-                        </form>
+
+
+                                <button type="submit"  href="{{route('destroy.todo', $todo->id) }}" class=" delete-confirm text-align-center  bg-red-600 hover:bg-blue-500  font-semibold text-white p-4 h-10 border border-blue-500 hover:border-transparent rounded">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+
+
+
 
                     @else
                         <button  class=" ml-4 bg-gray-900   font-bold text-white  py-10 px-16  rounded">
-                            COMPLETED ON : {{ $todo->updated_at }}
+                            COMPlETED ON : {{$todo->present()->getDateFormated($todo->updated_at)}}
                         </button>
                 @endif
                 </div>
                 </div>
             </div>
+
+
+
             @endforeach
 
 
-
-
         </div>
 
-        <div class="row">
-            <div class="col-md-12">
+        <div class="container">
                 {{ $todos->links('pagination::tailwind') }}
-            </div>
+
         </div>
 
 
 
-    <footer class="bg-gray-100 text-center lg:text-left">
 
 
-        <div class="text-center text-gray-700 p-4" style="background-color: rgba(0, 0, 0, 0.2);">
-            © 2022 Copyright:
-            <a class="text-gray-800" href="https://tailwind-elements.com/">TODO APP CHALLENGE</a>
-        </div>
-    </footer>
 
+    <script src="{{asset('/js/jquery-3.3.1.min.js')}}"></script>
+{{--    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.0.0/sweetalert.min.js"></script>--}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('.delete-confirm').on('click', function (event) {
+                event.preventDefault();
+                const url = $(this).attr('href');
+                swal({
+                    title: 'Confirm to delete?',
+                    text: 'Are you sure you want to delete this todo?',
+                    icon: 'warning',
+                    buttons: ["CANCEL", "DELETE"],
+                }).then(function (value) {
+                    if (value) {
+                        window.location.href = url;
+                    }
+                });
+            });
+        });
+
+
+    </script>
 
 
 @endsection

@@ -1,26 +1,27 @@
 <template>
     <div>
-        <div v-if="loading">
-              <loader object="#ff9633" color1="#ffffff" color2="#17fd3d" size="5" speed="2" bg="#343a40" objectbg="#999793" opacity="80" name="circular"></loader>
+<!--        <div v-if="loading">-->
+<!--            <loader object="#ff9633" color1="#ffffff" color2="#17fd3d" size="5" speed="2" bg="#343a40"-->
+<!--                    objectbg="#999793" opacity="80" name="circular"></loader>-->
 
-        </div>
-        <button  @click="toggleAddPostForm"
+<!--        </div>-->
+        <button @click="toggleAddPostForm"
                 class=" m-5 align-centre ml-5 bg-green-500 hover:bg-maroon-700 text-white font-bold py-2 px-4 border  rounded">
             ADD NEW POST
         </button>
 
         <div v-if="isAddNewPost" class="block  p-6 rounded-lg shadow-lg bg-white max-w-md">
             <form id="addPostForm">
-                <div class="form-group mb-6">
-                    <input type="number" class="form-control block
-        w-full
-        text-gray-700
-        bg-white bg-clip-padding
-        border border-solid border-gray-300
-        rounded
-        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                           required v-model="form.userId" placeholder="User Id">
-                </div>
+<!--                <div class="form-group mb-6">-->
+<!--                    <input type="number" class="form-control block-->
+<!--        w-full-->
+<!--        text-gray-700-->
+<!--        bg-white bg-clip-padding-->
+<!--        border border-solid border-gray-300-->
+<!--        rounded-->
+<!--        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"-->
+<!--                           required v-model="form.userId" placeholder="User Id">-->
+<!--                </div>-->
                 <div class="form-group mb-6">
                     <input type="text" name="title" class="form-control block
         w-full
@@ -50,7 +51,7 @@
                 placeholder="body" required
       ></textarea>
                 </div>
-                <button   @click="isEdit ? updatePost : submitPost"   type="submit" class="
+                <button @click.prevent="isEdit ? updatePost() : submitPost()" class="
       w-full
       p-3
       bg-blue-600
@@ -58,72 +59,42 @@
       leading-tight
       uppercase
       rounded">
-                {{isEdit ? "UPDATE POST DETAILS" : "ADD POST"}}
+                    {{ isEdit ? "UPDATE POST DETAILS" : "ADD POST" }}
                 </button>
             </form>
         </div>
 
 
-        <div class="flex flex-col m-30">
-            <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-                <div class="py-2 inline-block msm:px-6 lg:px-8">
-                    <div class="overflow-hidden">
-                        <table class=" ">
-                            <thead class="bg-blue-300 text-bold border-b">
-                            <tr>
-                                <th scope="col" class="text-lg font-medium text-gray-900 px-6 py-4 text-left">
-                                    #
-                                </th>
-                                <th scope="col" class="text-lg font-medium text-gray-900 px-6 py-4 text-left">
-                                    User Id
-                                </th>
-                                <th scope="col" class="text-lg font-medium text-gray-900 px-6 py-4 text-left">
-                                    Title
-                                </th>
-                                <th scope="col" class="text-lg font-medium text-gray-900 px-6 py-4 text-left">
-                                    Body
-                                </th>
-                                <th>
-                                    Actions
-                                </th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr v-for="(post,index) in posts " :key="index"
-                                class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
-                                <td class="px-6 py-4 whitespace-nowrap text-md font-medium text-gray-900">
-                                    {{ post.id }}
-                                </td>
-                                <td class="text-md text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                    {{ post.userId }}
-                                </td>
-                                <td class="text-md text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                    {{ post.title }}
-                                </td>
-                                <td class="text-md text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                    {{ post.body }}
-                                </td>
-                                <td class="flex">
-                                    <button
-                                        @click="editPost(post)"
-                                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
-                                        EDIT
-                                    </button>
-                                    <button
-                                        @click="deletePost(post)"
-                                        class="  ml-5 bg-red-500 hover:bg-maroon-700 text-white font-bold py-2 px-4 border  rounded">
-                                        DELETE
-                                    </button>
-                                </td>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th> Title</th>
+                        <th>Body</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="(post , index) in posts">
+                        <td data-label="title">{{post.title}}</td>
+                        <td data-label=" body">{{post.body}}</td>
+                        <td class="flex">
+                                                                <button
+                                                                    @click="editPost(post)"
+                                                                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
+                                                                    EDIT
+                                                                </button>
+                                                                <button
+                                                                    @click="deletePost(post)"
+                                                                    class="  ml-5 bg-red-500 hover:bg-maroon-700 text-white font-bold py-2 px-4 border  rounded">
+                                                                    DELETE
+                                                                </button>
 
-                            </tr>
 
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
+                                                          </td>
+                                        </tr>
+
+                                        </tbody>
+                                    </table>
 
 
     </div>
@@ -133,78 +104,114 @@
 
 <script>
 const axios = require('axios');
+ const Swal =require('sweetalert2');
 export default {
     data() {
         return {
             posts: null,
             isAddNewPost: false,
             form: {
-                userId: null,
+                userId: 1,
                 title: '',
                 body: '',
             },
-            loading:false,
-            isEdit:false,
+            loading: false,
+            isEdit: false,
         }
 
     },
-    mounted() {
-        this.loading = true;
+    beforeMount() {
 
-        //Waste 2 seconds
-        setTimeout(() => {
-            this.loading = false;
-        }, 2000)
-        this.getPosts();
+
+
+
+        axios.get('/posts/getPosts')
+            .then((response) => {
+
+                this.posts = response.data.splice(0,15)
+                console.log(response.data);
+            })
+            .catch(function (error) {
+                console.log('error adding post');
+
+            })
+
         console.log('Component mounted.')
     },
     methods: {
-        getPosts() {
-            axios.get('/posts/getPosts')
-                .then((response) => {
-                    this.posts = response.data;
-                    this.$swal('Basic', 'This is Basic', 'OK');
-                })
-                .catch(function (error) {
-                    console.log('Post added successfully');
 
-                })
-        },
 
         submitPost() {
             axios.post('/post/store', this.form).then((response) => {
                 this.posts.unshift(response.data)
-                 this.$swal('Basic', 'This is Basic', 'OK');
-                // console.log('Post added successfully');
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Post added successfully',
+                    icon: 'success',
+                    confirmButtonText: 'Ok'
+                })
+                console.log(response.data);
                 this.resetFormInputs();
             }).catch((error) => {
 
-                // console.log('error');
+                console.log(error);
             })
         },
 
         deletePost(post) {
-            axios.get(`/delete/post/${post.id}`).then((response) => {
-                this.posts = this.posts.filter(response => response.id !== post.id)
-                console.log('Your Post has been  deleted successfully');
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    axios.get(`/delete/post/${post.id}`).then((response) => {
+
+                        if (response.status == 200) {
+                            this.posts = this.posts.filter(response => response.id !== post.id)
+                            Swal.fire('Deleted!', 'Your post has been deleted.', 'success')
+                        } else {
+                            Swal.fire({
+                                title: 'Error!',
+                                text: 'Something went wrong',
+                                icon: 'error',
+                                confirmButtonText: 'Ok'
+                            })
+                        }
+                    }).catch((error) => {
+                        console.log('An error occured');
+                    })
+                }
+            })
+
+        },
+
+
+        updatePost() {
+            axios.post('/post/update/details', this.form).then((response) => {
+                if (response.status == 200) {
+                    return response.data
+                    Swal.fire('Updated!', 'Your post has been Updated.', 'success')
+                    this.resetFormInputs();
+                } else {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Something went wrong',
+                        icon: 'error',
+                        confirmButtonText: 'Ok'
+                    })
+                }
             }).catch((error) => {
                 console.log('An error occured');
             })
+
         },
-        updatePost() {
-            axios.post('/post/update-details', this.form).then((response) => {
-                this.posts = this.posts.map((post) => {
-                    if (post.id === this.form.id) {
-                        return response.data;
-                    }
-                    return post;
-                });
-                console.log('Post Details updated')
-                this.resetFormInputs();
-            }).catch((error) => {
-                console.log('an error occured');
-            })
-        },
+
         resetFormInputs() {
             this.form = {
                 userId: null,
@@ -212,13 +219,13 @@ export default {
                 body: '',
             }
         },
-        editPost(post){
-            this.form={
-                title:post.title,
-                userId:post.userId,
-                body:post.body,
+        editPost(post) {
+            this.form = {
+                title: post.title,
+                userId: 1,
+                body: post.body,
             },
-                this.isEdit=true;
+                this.isEdit = true;
             this.toggleAddPostForm();
         },
 
@@ -227,6 +234,10 @@ export default {
         },
     }
 }
+
+
+
+
 </script>
 
 <style scoped>
@@ -235,26 +246,111 @@ input {
     padding: 14px;
 }
 
-html,
-body {
-    height: 100%;
+
+table {
+    border: 2px solid #ccc;
+    margin: 40px;
+    padding: 10px;
 }
 
-@media (min-width: 640px) {
+table caption {
+    font-size: 1.5em;
+    margin: .5em 0 .75em;
+}
+
+table tr {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    padding: .35em;
+}
+
+table th,
+table td {
+    padding: .625em;
+    text-align: left;
+}
+
+table th {
+    font-size: .85em;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    background-color: rgb(46, 59, 115);
+    color: white;
+    padding: 20px;
+}
+
+@media screen and (max-width: 600px) {
     table {
-        display: inline-table !important;
+        border: 0;
+        margin: 10px;
+        padding: 5px;
     }
 
-    thead tr:not(:first-child) {
-        display: none;
+    table caption {
+        font-size: 1.3em;
+    }
+
+    table thead {
+        border: none;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+
+    table tr {
+        border-bottom: 3px solid #ddd;
+        display: block;
+        margin-bottom: .625em;
+    }
+
+    table td {
+        border-bottom: 1px solid #ddd;
+        display: block;
+        font-size: .8em;
+        text-align: right;
+    }
+
+    table td::before {
+        /*
+        * aria-label has no advantage, it won't be read inside a table
+        content: attr(aria-label);
+        */
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    table td:last-child {
+        border-bottom: 0;
     }
 }
 
-td:not(:last-child) {
-    border-bottom: 0;
+/* general styling */
+body {
+    font-family: "Open Sans", sans-serif;
+    line-height: 1.25;
 }
 
-th:not(:last-child) {
-    border-bottom: 2px solid rgba(0, 0, 0, .1);
-}
+
 </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

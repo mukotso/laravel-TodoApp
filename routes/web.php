@@ -15,6 +15,7 @@ Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->nam
 
 //resource
 Route::resource('todo', TodosController::class);
+Route::get('delete/todo/{id}', [\App\Http\Controllers\TodosController::class, 'destroy'])->name('destroy.todo');
 Route::get('todos/search', [\App\Http\Controllers\TodosController::class, 'search'])->name('todo.search');
 Route::get('todos/{id}/complete', [\App\Http\Controllers\TodosController::class, 'completeTodo'])->name('todo.complete');
 

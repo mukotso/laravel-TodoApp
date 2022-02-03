@@ -3,5 +3,4 @@
 @section('content')
 <post></post>
 
-
 @endsection
