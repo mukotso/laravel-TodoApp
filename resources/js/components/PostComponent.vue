@@ -1,101 +1,130 @@
 <template>
     <div>
-<!--        <div v-if="loading">-->
-<!--            <loader object="#ff9633" color1="#ffffff" color2="#17fd3d" size="5" speed="2" bg="#343a40"-->
-<!--                    objectbg="#999793" opacity="80" name="circular"></loader>-->
-
-<!--        </div>-->
-        <button @click="toggleAddPostForm"
-                class=" m-5 align-centre ml-5 bg-green-500 hover:bg-maroon-700 text-white font-bold py-2 px-4 border  rounded">
+        <button @click="toggleAddPostForm" style="margin-left: 30%;margin-top:10px; margin-bottom: 10px"
+                class=" bg-green-500 hover:bg-maroon-700 text-white font-bold py-2 px-4 border  rounded">
             ADD NEW POST
         </button>
 
-        <div v-if="isAddNewPost" class="block  p-6 rounded-lg shadow-lg bg-white max-w-md">
-            <form id="addPostForm">
-<!--                <div class="form-group mb-6">-->
-<!--                    <input type="number" class="form-control block-->
-<!--        w-full-->
-<!--        text-gray-700-->
-<!--        bg-white bg-clip-padding-->
-<!--        border border-solid border-gray-300-->
-<!--        rounded-->
-<!--        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"-->
-<!--                           required v-model="form.userId" placeholder="User Id">-->
-<!--                </div>-->
-                <div class="form-group mb-6">
-                    <input type="text" name="title" class="form-control block
-        w-full
-        text-gray-700
-        bg-white bg-clip-padding
-        border border-solid border-gray-300
-        rounded
-        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                           v-model="form.title" required placeholder="Title">
+
+        <!--        <div class="form-wrapper addPostForm" v-if="isAddNewPost">-->
+        <!--            <form id="addPostForm">-->
+        <!--              -->
+        <!--                <div class="row">-->
+        <!--                    <div class="col-25">-->
+        <!--                        <label for="title">Title</label>-->
+        <!--                    </div>-->
+        <!--                    <div class="col-75">-->
+        <!--                        <input type="text" id="title" name="title" v-model="form.title" placeholder="Post Title">-->
+        <!--                    </div>-->
+        <!--                </div>-->
+        <!--              -->
+        <!--                <div class="row">-->
+        <!--                    <div class="col-25">-->
+        <!--                        <label for="subject">Body</label>-->
+        <!--                    </div>-->
+        <!--                    <div class="col-75">-->
+        <!--                        <textarea id="body" name="body" v-model="form.body" placeholder="post body" style="height:200px"></textarea>-->
+        <!--                    </div>-->
+        <!--                </div>-->
+        <!--                <div class="row">-->
+        <!--                   -->
+
+        <!-- <button >-->
+        <!--                     -->
+        <!--               </button>-->
+
+        <!--                </div>-->
+        <!--            </form>-->
+        <!--        </div>-->
+
+
+        <main class="sm:container sm:mx-auto sm:max-w-lg sm:mt-10  form-wrapper addPostForm" v-if="isAddNewPost">
+            <div class="flex">
+                <div class="w-full">
+                    <section
+                        class="flex flex-col break-words bg-white sm:border-1 sm:rounded-md sm:shadow-sm sm:shadow-lg">
+
+                        <header
+                            class="font-semibold bg-gray-200 text-gray-700 py-5 px-6 sm:py-6 sm:px-8 sm:rounded-t-md">
+                            POST
+                        </header>
+
+                        <form class="w-full px-6 space-y-6 sm:px-10 sm:space-y-8" id="addPostForm">
+
+
+                            <div class="flex flex-wrap">
+
+                                <div class="row hidden">
+                                    <div class="col-25">
+                                        <label for="userId">User Id</label>
+                                    </div>
+                                    <div class="col-75">
+                                        <input type="number" id="userId" name="userId" v-model="form.userId"
+                                               placeholder="UserId">
+                                    </div>
+
+                                </div>
+                                </div>
+                            <div class="flex flex-wrap">
+                                <input id="search" type="text"
+                                       class="form-input w-full" name="search" placeholder="title"
+                                       required  autofocus  v-model="form.title"> <br>
+                            </div>
+                            <div class="flex flex-wrap">
+                                <textarea id="todo" type="text"
+                                          class="form-input w-full" name="todo"
+                                          rows="5" required autofocus  v-model="form.body" >
+                                </textarea>
+
+                            </div>
+
+
+
+
+                            <div class="flex flex-wrap">
+                                <button @click.prevent="isEdit ? updatePost() : submitPost()"
+                                    class=" addFormButton w-full mb-5 select-none font-bold whitespace-no-wrap p-3 rounded-lg text-base leading-normal no-underline text-gray-100 bg-blue-500 hover:bg-blue-700 sm:py-4">
+
+                                    {{ isEdit ? "UPDATE POST DETAILS" : "ADD POST" }}
+                                </button>
+                            </div>
+                        </form>
+
+                    </section>
                 </div>
-                <div class="form-group mb-6">
-      <textarea name="body"
-                class="
-        form-control
-        block
-        w-full
-        px-3
-        py-1.5
-        text-gray-700
-        bg-white bg-clip-padding
-        border border-solid border-gray-300
-        rounded
-        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
-      "
-                v-model="form.body"
-                rows="5"
-                placeholder="body" required
-      ></textarea>
-                </div>
-                <button @click.prevent="isEdit ? updatePost() : submitPost()" class="
-      w-full
-      p-3
-      bg-blue-600
-      text-white
-      leading-tight
-      uppercase
-      rounded">
-                    {{ isEdit ? "UPDATE POST DETAILS" : "ADD POST" }}
-                </button>
-            </form>
+            </div>
+        </main>
+
+
+        <div style="overflow-x:auto;">
+            <table>
+                <tr>
+                    <th>Title</th>
+                    <th>Body</th>
+                    <th>Action</th>
+                </tr>
+
+                <tr v-for="(post) in posts" :key="post.id">
+                    <th>{{ post.title }}</th>
+                    <th>{{ post.body }}</th>
+                    <td class="flex">
+                        <button
+                            @click="editPost(post)"
+                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
+                            EDIT
+                        </button>
+                        <button
+                            @click="deletePost(post)"
+                            class="  ml-5 bg-red-500 hover:bg-maroon-700 text-white font-bold py-2 px-4 border  rounded">
+                            DELETE
+                        </button>
+
+
+                    </td>
+                </tr>
+
+            </table>
         </div>
-
-
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th> Title</th>
-                        <th>Body</th>
-                        <th>Action</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr v-for="(post , index) in posts">
-                        <td data-label="title">{{post.title}}</td>
-                        <td data-label=" body">{{post.body}}</td>
-                        <td class="flex">
-                                                                <button
-                                                                    @click="editPost(post)"
-                                                                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
-                                                                    EDIT
-                                                                </button>
-                                                                <button
-                                                                    @click="deletePost(post)"
-                                                                    class="  ml-5 bg-red-500 hover:bg-maroon-700 text-white font-bold py-2 px-4 border  rounded">
-                                                                    DELETE
-                                                                </button>
-
-
-                                                          </td>
-                                        </tr>
-
-                                        </tbody>
-                                    </table>
-
 
     </div>
 
@@ -104,7 +133,7 @@
 
 <script>
 const axios = require('axios');
- const Swal =require('sweetalert2');
+const Swal = require('sweetalert2');
 export default {
     data() {
         return {
@@ -123,12 +152,10 @@ export default {
     beforeMount() {
 
 
-
-
         axios.get('/posts/getPosts')
             .then((response) => {
 
-                this.posts = response.data.splice(0,15)
+                this.posts = response.data.splice(0, 15)
                 console.log(response.data);
             })
             .catch(function (error) {
@@ -194,8 +221,14 @@ export default {
 
         updatePost() {
             axios.post('/post/update/details', this.form).then((response) => {
-                if (response.status == 200) {
-                    return response.data
+                this.form.userId = 1;
+                if (response.status === 200) {
+                    this.posts = this.posts.map((post) => {
+                        if (post.id == this.form.userId) {
+                            return this.form;
+                        }
+                        return post;
+                    });
                     Swal.fire('Updated!', 'Your post has been Updated.', 'success')
                     this.resetFormInputs();
                 } else {
@@ -236,105 +269,193 @@ export default {
 }
 
 
-
-
 </script>
 
-<style scoped>
+<style>
+
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    max-width: 100%;
+    border: 1px solid #ddd;
+    padding: 30px;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: lighter;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2
+}
+
+
+* {
+    box-sizing: border-box;
+}
+
+input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+label {
+    padding-left: 10%;
+    display: inline-block;
+}
+
+.addFormButton {
+    background-color: #04AA6D;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+.form-wrapper {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+
+
+@media screen and (min-width: 780px) {
+    margin-left:
+
+20%;
+}
+
+}
+
+.col-25 {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+}
+
+.col-75 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Responsive layout - when the screen is less than 780px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 780px) {
+    .col-25, .col-75, input[type=submit] {
+        width: 100%;
+        margin-top: 0;
+    }
+}
+
 
 input {
     padding: 14px;
 }
 
 
-table {
-    border: 2px solid #ccc;
-    margin: 40px;
-    padding: 10px;
-}
+/*table {*/
+/*    border: 2px solid #ccc;*/
+/*    margin-right: 45px;*/
+/*    padding: 10px;*/
+/*    margin-left: 45px;*/
+/*}*/
 
-table caption {
-    font-size: 1.5em;
-    margin: .5em 0 .75em;
-}
+/*table caption {*/
+/*    font-size: 1.5em;*/
+/*    margin: .5em 0 .75em;*/
+/*}*/
 
-table tr {
-    background-color: #f8f8f8;
-    border: 1px solid #ddd;
-    padding: .35em;
-}
+/*table tr {*/
+/*    background-color: #f8f8f8;*/
+/*    border: 1px solid #ddd;*/
+/*    padding: .35em;*/
+/*}*/
 
-table th,
-table td {
-    padding: .625em;
-    text-align: left;
-}
 
-table th {
-    font-size: .85em;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    background-color: rgb(46, 59, 115);
-    color: white;
-    padding: 20px;
-}
+/*table th {*/
+/*    font-size: .85em;*/
+/*    letter-spacing: .1em;*/
+/*    text-transform: uppercase;*/
+/*    background-color: rgb(46, 59, 115);*/
+/*    color: white;*/
+/*    padding: 20px;*/
+/*}*/
 
-@media screen and (max-width: 600px) {
-    table {
-        border: 0;
-        margin: 10px;
-        padding: 5px;
-    }
+/*@media screen and (max-width: 780px) {*/
+/*    table {*/
+/*        border: 0;*/
+/*        margin: 10px;*/
+/*        padding: 5px;*/
+/*    }*/
 
-    table caption {
-        font-size: 1.3em;
-    }
+/*    table caption {*/
+/*        font-size: 1.3em;*/
+/*    }*/
 
-    table thead {
-        border: none;
-        clip: rect(0 0 0 0);
-        height: 1px;
-        margin: -1px;
-        overflow: hidden;
-        padding: 0;
-        position: absolute;
-        width: 1px;
-    }
+/*    table thead {*/
+/*        border: none;*/
+/*        clip: rect(0 0 0 0);*/
+/*        height: 1px;*/
+/*        margin: -1px;*/
+/*        overflow: hidden;*/
+/*        padding: 0;*/
+/*        position: absolute;*/
+/*        width: 1px;*/
+/*    }*/
 
-    table tr {
-        border-bottom: 3px solid #ddd;
-        display: block;
-        margin-bottom: .625em;
-    }
+/*    table tr {*/
+/*        border-bottom: 3px solid #ddd;*/
+/*        display: block;*/
+/*        margin-bottom: .625em;*/
+/*    }*/
 
-    table td {
-        border-bottom: 1px solid #ddd;
-        display: block;
-        font-size: .8em;
-        text-align: right;
-    }
+/*    table td {*/
+/*        border-bottom: 1px solid #ddd;*/
+/*        display: block;*/
+/*        font-size: .8em;*/
+/*        text-align: right;*/
+/*    }*/
 
-    table td::before {
-        /*
-        * aria-label has no advantage, it won't be read inside a table
-        content: attr(aria-label);
-        */
-        content: attr(data-label);
-        float: left;
-        font-weight: bold;
-        text-transform: uppercase;
-    }
+/*    table td::before {*/
+/*        !**/
+/*        * aria-label has no advantage, it won't be read inside a table*/
+/*        content: attr(aria-label);*/
+/*        *!*/
+/*        content: attr(data-label);*/
+/*        float: left;*/
+/*        font-weight: bold;*/
+/*        text-transform: uppercase;*/
+/*    }*/
 
-    table td:last-child {
-        border-bottom: 0;
-    }
-}
+/*    table td:last-child {*/
+/*        border-bottom: 0;*/
+/*    }*/
+/*}*/
 
 /* general styling */
-body {
-    font-family: "Open Sans", sans-serif;
-    line-height: 1.25;
-}
+/*body {*/
+/*    font-family: "Open Sans", sans-serif;*/
+/*    line-height: 1.25;*/
+/*}*/
 
 
 </style>

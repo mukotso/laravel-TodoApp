@@ -32,8 +32,8 @@ class TodosController extends Controller
 
         $ifTodoContainsNumber = preg_match('/\d/', $request->todo);
         if ($ifTodoContainsNumber == 1) {
-            alert()->error('Todo should not contain numbers')->persistent('OK');
-            return redirect()->back();
+            return redirect()->back()->with('error','Todo should not contain numbers');
+
         }
         $this->validate($request, [
             'todo' => ['required', 'string'],
@@ -43,9 +43,8 @@ class TodosController extends Controller
         $todo->status = 'pending_completion';
         $todo->user_id = Auth()->user()->id;
         $todo->save();
-        alert()->success('Todo added Successfully');
-        return redirect()->back();
-
+                
+        return redirect()->back()->with('success','Todo Added successfully');
     }
 
     public function edit($id)
@@ -68,16 +67,14 @@ class TodosController extends Controller
 
         $ifTodoContainsNumber = preg_match('/\d/', $request->todo);
         if ($ifTodoContainsNumber == 1) {
-            alert()->error('Todo should not contain numbers')->persistent('OK');
-            return redirect()->back();
-        }
+            return redirect()->back()->with('error','Invalid Todo name...Todo should not contain numbers');
 
+        }
         $todo = Todo::Find($id);
         $todo->name = strtolower($request->todo);
         $todo->save();
         session()->forget('todo');
-        alert()->success('Todo updated Successfully');
-        return redirect()->back();;
+        return redirect()->back()->with('success','Todo updated Successfully');
     }
 
     public function completeTodo($id)
@@ -90,22 +87,22 @@ class TodosController extends Controller
                 $todo->status = 'completed';
                 $todo->save();
 
+                $user = Auth()->User();
                 $details = [
                     'todo' => $todo->name,
+                    'name' => $user->name,
+                    'date' =>$todo->present()->getDateFormated($todo->updated_at)
                 ];
 
                 //Send success email
-                $user = Auth()->User();
+
                 //pass data to the notification
 //                $user->notify(new TodoCompletionNotification($details));
-            Mail::to($user->email)->send(new TodoCompletion());
-//                alert()->success('Todo Completed  and email sent')->persistent('OKAY');
-                return redirect()->back();
+                Mail::to($user->email)->send(new TodoCompletion($details));
+                return redirect()->back()->with('success','Todo Completed and Email Sent  Successfully');
             } catch (Exception $ex) {
-                dd($ex);
                 DB::rollBack();
-                alert()->error('An error occured Task completion failed')->persistent('OK');
-                return redirect()->back();
+                return redirect()->back()->with('error','An error occured Task completion failed');;
             }
             //try atleat two times before failing
         }, 2);
@@ -116,8 +113,8 @@ class TodosController extends Controller
     {
         $todo = Todo::Find($id);
         $todo->delete();
-        alert()->success('Todo deleted Successfully')->autoclose(20);
-        return redirect()->back();
+
+        return redirect()->back()->with('success','Todo Deleted  Successfully');
     }
 
 
@@ -135,10 +132,13 @@ class TodosController extends Controller
             ->paginate(4);
 
         if ($todos->isEmpty()) {
-            alert()->info('No Todo Found For the search');
+            return view('todos', compact('todos'))->with('error','No search result found for the search'.  $search);
+
+        }else{
+            return view('todos', compact('todos'));
         }
 
-        return view('todos', compact('todos'));
+
     }
 }
 

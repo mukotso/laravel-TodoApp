@@ -9,12 +9,14 @@
         "datacreativa/laravel-presentable": "^0.0.1",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.4",
+        "laravel/dusk": "^6.22",
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "uxweb/sweet-alert": "^2.0"
     },
     "require-dev": {
+        "brianium/paratest": "^6.4",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
         "laravel-frontend-presets/tailwindcss": "^4.3",

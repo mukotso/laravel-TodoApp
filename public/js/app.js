@@ -5366,6 +5366,35 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 var Swal = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
@@ -5452,8 +5481,16 @@ var Swal = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/di
       var _this4 = this;
 
       axios.post('/post/update/details', this.form).then(function (response) {
-        if (response.status == 200) {
-          return response.data;
+        _this4.form.userId = 1;
+
+        if (response.status === 200) {
+          _this4.posts = _this4.posts.map(function (post) {
+            if (post.id == _this4.form.userId) {
+              return _this4.form;
+            }
+
+            return post;
+          });
           Swal.fire('Updated!', 'Your post has been Updated.', 'success');
 
           _this4.resetFormInputs();
@@ -10726,10 +10763,10 @@ ___CSS_LOADER_EXPORT___.push([module.id, "\n:root{\n        --time-animation: lo
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/PostComponent.vue?vue&type=style&index=0&id=54a00d62&scoped=true&lang=css&":
-/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/PostComponent.vue?vue&type=style&index=0&id=54a00d62&scoped=true&lang=css& ***!
-  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/PostComponent.vue?vue&type=style&index=0&lang=css&":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/PostComponent.vue?vue&type=style&index=0&lang=css& ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -10743,7 +10780,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\ninput[data-v-54a00d62] {\n    padding: 14px;\n}\ntable[data-v-54a00d62] {\n    border: 2px solid #ccc;\n    margin: 40px;\n    padding: 10px;\n}\ntable caption[data-v-54a00d62] {\n    font-size: 1.5em;\n    margin: .5em 0 .75em;\n}\ntable tr[data-v-54a00d62] {\n    background-color: #f8f8f8;\n    border: 1px solid #ddd;\n    padding: .35em;\n}\ntable th[data-v-54a00d62],\ntable td[data-v-54a00d62] {\n    padding: .625em;\n    text-align: left;\n}\ntable th[data-v-54a00d62] {\n    font-size: .85em;\n    letter-spacing: .1em;\n    text-transform: uppercase;\n    background-color: rgb(46, 59, 115);\n    color: white;\n    padding: 20px;\n}\n@media screen and (max-width: 600px) {\ntable[data-v-54a00d62] {\n        border: 0;\n        margin: 10px;\n        padding: 5px;\n}\ntable caption[data-v-54a00d62] {\n        font-size: 1.3em;\n}\ntable thead[data-v-54a00d62] {\n        border: none;\n        clip: rect(0 0 0 0);\n        height: 1px;\n        margin: -1px;\n        overflow: hidden;\n        padding: 0;\n        position: absolute;\n        width: 1px;\n}\ntable tr[data-v-54a00d62] {\n        border-bottom: 3px solid #ddd;\n        display: block;\n        margin-bottom: .625em;\n}\ntable td[data-v-54a00d62] {\n        border-bottom: 1px solid #ddd;\n        display: block;\n        font-size: .8em;\n        text-align: right;\n}\ntable td[data-v-54a00d62]::before {\n        /*\n        * aria-label has no advantage, it won't be read inside a table\n        content: attr(aria-label);\n        */\n        content: attr(data-label);\n        float: left;\n        font-weight: bold;\n        text-transform: uppercase;\n}\ntable td[data-v-54a00d62]:last-child {\n        border-bottom: 0;\n}\n}\n\n/* general styling */\nbody[data-v-54a00d62] {\n    font-family: \"Open Sans\", sans-serif;\n    line-height: 1.25;\n}\n\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\ntable {\n    border-collapse: collapse;\n    border-spacing: 0;\n    max-width: 100%;\n    border: 1px solid #ddd;\n    padding: 30px;\n}\nth, td {\n    text-align: left;\n    padding: 8px;\n    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;\n    font-weight: lighter;\n}\ntr:nth-child(even) {\n    background-color: #f2f2f2\n}\n* {\n    box-sizing: border-box;\n}\ninput[type=text], select, textarea {\n    width: 100%;\n    padding: 12px;\n    border: 1px solid #ccc;\n    border-radius: 4px;\n    resize: vertical;\n}\nlabel {\n    padding-left: 10%;\n    display: inline-block;\n}\n.addFormButton {\n    background-color: #04AA6D;\n    color: white;\n    padding: 12px 20px;\n    border: none;\n    border-radius: 4px;\n    cursor: pointer;\n    float: right;\n}\ninput[type=submit]:hover {\n    background-color: #45a049;\n}\n.form-wrapper {\n    border-radius: 5px;\n    background-color: #f2f2f2;\n    padding: 20px;\n@media screen and (min-width: 780px) {\n    margin-left:\n\n20%;\n}\n}\n.col-25 {\n    float: left;\n    width: 25%;\n    margin-top: 6px;\n}\n.col-75 {\n    float: left;\n    width: 75%;\n    margin-top: 6px;\n}\n\n/* Clear floats after the columns */\n.row:after {\n    content: \"\";\n    display: table;\n    clear: both;\n}\n\n/* Responsive layout - when the screen is less than 780px wide, make the two columns stack on top of each other instead of next to each other */\n@media screen and (max-width: 780px) {\n.col-25, .col-75, input[type=submit] {\n        width: 100%;\n        margin-top: 0;\n}\n}\ninput {\n    padding: 14px;\n}\n\n\n/*table {*/\n/*    border: 2px solid #ccc;*/\n/*    margin-right: 45px;*/\n/*    padding: 10px;*/\n/*    margin-left: 45px;*/\n/*}*/\n\n/*table caption {*/\n/*    font-size: 1.5em;*/\n/*    margin: .5em 0 .75em;*/\n/*}*/\n\n/*table tr {*/\n/*    background-color: #f8f8f8;*/\n/*    border: 1px solid #ddd;*/\n/*    padding: .35em;*/\n/*}*/\n\n\n/*table th {*/\n/*    font-size: .85em;*/\n/*    letter-spacing: .1em;*/\n/*    text-transform: uppercase;*/\n/*    background-color: rgb(46, 59, 115);*/\n/*    color: white;*/\n/*    padding: 20px;*/\n/*}*/\n\n/*@media screen and (max-width: 780px) {*/\n/*    table {*/\n/*        border: 0;*/\n/*        margin: 10px;*/\n/*        padding: 5px;*/\n/*    }*/\n\n/*    table caption {*/\n/*        font-size: 1.3em;*/\n/*    }*/\n\n/*    table thead {*/\n/*        border: none;*/\n/*        clip: rect(0 0 0 0);*/\n/*        height: 1px;*/\n/*        margin: -1px;*/\n/*        overflow: hidden;*/\n/*        padding: 0;*/\n/*        position: absolute;*/\n/*        width: 1px;*/\n/*    }*/\n\n/*    table tr {*/\n/*        border-bottom: 3px solid #ddd;*/\n/*        display: block;*/\n/*        margin-bottom: .625em;*/\n/*    }*/\n\n/*    table td {*/\n/*        border-bottom: 1px solid #ddd;*/\n/*        display: block;*/\n/*        font-size: .8em;*/\n/*        text-align: right;*/\n/*    }*/\n\n/*    table td::before {*/\n/*        !**/\n/*        * aria-label has no advantage, it won't be read inside a table*/\n/*        content: attr(aria-label);*/\n/*        *!*/\n/*        content: attr(data-label);*/\n/*        float: left;*/\n/*        font-weight: bold;*/\n/*        text-transform: uppercase;*/\n/*    }*/\n\n/*    table td:last-child {*/\n/*        border-bottom: 0;*/\n/*    }*/\n/*}*/\n\n/* general styling */\n/*body {*/\n/*    font-family: \"Open Sans\", sans-serif;*/\n/*    line-height: 1.25;*/\n/*}*/\n\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -28438,10 +28475,10 @@ var update = _style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMP
 
 /***/ }),
 
-/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/PostComponent.vue?vue&type=style&index=0&id=54a00d62&scoped=true&lang=css&":
-/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/PostComponent.vue?vue&type=style&index=0&id=54a00d62&scoped=true&lang=css& ***!
-  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/PostComponent.vue?vue&type=style&index=0&lang=css&":
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/PostComponent.vue?vue&type=style&index=0&lang=css& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -28451,7 +28488,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_PostComponent_vue_vue_type_style_index_0_id_54a00d62_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./PostComponent.vue?vue&type=style&index=0&id=54a00d62&scoped=true&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/PostComponent.vue?vue&type=style&index=0&id=54a00d62&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_PostComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./PostComponent.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/PostComponent.vue?vue&type=style&index=0&lang=css&");
 
             
 
@@ -28460,11 +28497,11 @@ var options = {};
 options.insert = "head";
 options.singleton = false;
 
-var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_PostComponent_vue_vue_type_style_index_0_id_54a00d62_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"], options);
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_PostComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"], options);
 
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_PostComponent_vue_vue_type_style_index_0_id_54a00d62_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_PostComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
 
 /***/ }),
 
@@ -32715,9 +32752,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _PostComponent_vue_vue_type_template_id_54a00d62_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PostComponent.vue?vue&type=template&id=54a00d62&scoped=true& */ "./resources/js/components/PostComponent.vue?vue&type=template&id=54a00d62&scoped=true&");
+/* harmony import */ var _PostComponent_vue_vue_type_template_id_54a00d62___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PostComponent.vue?vue&type=template&id=54a00d62& */ "./resources/js/components/PostComponent.vue?vue&type=template&id=54a00d62&");
 /* harmony import */ var _PostComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PostComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/PostComponent.vue?vue&type=script&lang=js&");
-/* harmony import */ var _PostComponent_vue_vue_type_style_index_0_id_54a00d62_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./PostComponent.vue?vue&type=style&index=0&id=54a00d62&scoped=true&lang=css& */ "./resources/js/components/PostComponent.vue?vue&type=style&index=0&id=54a00d62&scoped=true&lang=css&");
+/* harmony import */ var _PostComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./PostComponent.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/PostComponent.vue?vue&type=style&index=0&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -32729,11 +32766,11 @@ __webpack_require__.r(__webpack_exports__);
 
 var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _PostComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _PostComponent_vue_vue_type_template_id_54a00d62_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
-  _PostComponent_vue_vue_type_template_id_54a00d62_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  _PostComponent_vue_vue_type_template_id_54a00d62___WEBPACK_IMPORTED_MODULE_0__.render,
+  _PostComponent_vue_vue_type_template_id_54a00d62___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
   null,
-  "54a00d62",
+  null,
   null
   
 )
@@ -32839,15 +32876,15 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/PostComponent.vue?vue&type=style&index=0&id=54a00d62&scoped=true&lang=css&":
-/*!************************************************************************************************************!*\
-  !*** ./resources/js/components/PostComponent.vue?vue&type=style&index=0&id=54a00d62&scoped=true&lang=css& ***!
-  \************************************************************************************************************/
+/***/ "./resources/js/components/PostComponent.vue?vue&type=style&index=0&lang=css&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/PostComponent.vue?vue&type=style&index=0&lang=css& ***!
+  \************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_PostComponent_vue_vue_type_style_index_0_id_54a00d62_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./PostComponent.vue?vue&type=style&index=0&id=54a00d62&scoped=true&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/PostComponent.vue?vue&type=style&index=0&id=54a00d62&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_PostComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./PostComponent.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/PostComponent.vue?vue&type=style&index=0&lang=css&");
 
 
 /***/ }),
@@ -33050,19 +33087,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/PostComponent.vue?vue&type=template&id=54a00d62&scoped=true&":
-/*!**********************************************************************************************!*\
-  !*** ./resources/js/components/PostComponent.vue?vue&type=template&id=54a00d62&scoped=true& ***!
-  \**********************************************************************************************/
+/***/ "./resources/js/components/PostComponent.vue?vue&type=template&id=54a00d62&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/PostComponent.vue?vue&type=template&id=54a00d62& ***!
+  \**********************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PostComponent_vue_vue_type_template_id_54a00d62_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PostComponent_vue_vue_type_template_id_54a00d62_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PostComponent_vue_vue_type_template_id_54a00d62___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PostComponent_vue_vue_type_template_id_54a00d62___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PostComponent_vue_vue_type_template_id_54a00d62_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./PostComponent.vue?vue&type=template&id=54a00d62&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/PostComponent.vue?vue&type=template&id=54a00d62&scoped=true&");
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PostComponent_vue_vue_type_template_id_54a00d62___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./PostComponent.vue?vue&type=template&id=54a00d62& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/PostComponent.vue?vue&type=template&id=54a00d62&");
 
 
 /***/ }),
@@ -33302,10 +33339,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/PostComponent.vue?vue&type=template&id=54a00d62&scoped=true&":
-/*!*************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/PostComponent.vue?vue&type=template&id=54a00d62&scoped=true& ***!
-  \*************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/PostComponent.vue?vue&type=template&id=54a00d62&":
+/*!*************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/PostComponent.vue?vue&type=template&id=54a00d62& ***!
+  \*************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -33323,158 +33360,248 @@ var render = function () {
       "button",
       {
         staticClass:
-          " m-5 align-centre ml-5 bg-green-500 hover:bg-maroon-700 text-white font-bold py-2 px-4 border  rounded",
+          " bg-green-500 hover:bg-maroon-700 text-white font-bold py-2 px-4 border  rounded",
+        staticStyle: {
+          "margin-left": "30%",
+          "margin-top": "10px",
+          "margin-bottom": "10px",
+        },
         on: { click: _vm.toggleAddPostForm },
       },
-      [_vm._v("\n            ADD NEW POST\n        ")]
+      [_vm._v("\n        ADD NEW POST\n    ")]
     ),
     _vm._v(" "),
     _vm.isAddNewPost
       ? _c(
-          "div",
-          { staticClass: "block  p-6 rounded-lg shadow-lg bg-white max-w-md" },
+          "main",
+          {
+            staticClass:
+              "sm:container sm:mx-auto sm:max-w-lg sm:mt-10  form-wrapper addPostForm",
+          },
           [
-            _c("form", { attrs: { id: "addPostForm" } }, [
-              _c("div", { staticClass: "form-group mb-6" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.form.title,
-                      expression: "form.title",
-                    },
-                  ],
-                  staticClass:
-                    "form-control block\n        w-full\n        text-gray-700\n        bg-white bg-clip-padding\n        border border-solid border-gray-300\n        rounded\n        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none",
-                  attrs: {
-                    type: "text",
-                    name: "title",
-                    required: "",
-                    placeholder: "Title",
+            _c("div", { staticClass: "flex" }, [
+              _c("div", { staticClass: "w-full" }, [
+                _c(
+                  "section",
+                  {
+                    staticClass:
+                      "flex flex-col break-words bg-white sm:border-1 sm:rounded-md sm:shadow-sm sm:shadow-lg",
                   },
-                  domProps: { value: _vm.form.title },
-                  on: {
-                    input: function ($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.form, "title", $event.target.value)
-                    },
-                  },
-                }),
+                  [
+                    _c(
+                      "header",
+                      {
+                        staticClass:
+                          "font-semibold bg-gray-200 text-gray-700 py-5 px-6 sm:py-6 sm:px-8 sm:rounded-t-md",
+                      },
+                      [
+                        _vm._v(
+                          "\n                        POST\n                    "
+                        ),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "form",
+                      {
+                        staticClass:
+                          "w-full px-6 space-y-6 sm:px-10 sm:space-y-8",
+                        attrs: { id: "addPostForm" },
+                      },
+                      [
+                        _c("div", { staticClass: "flex flex-wrap" }, [
+                          _c("div", { staticClass: "row hidden" }, [
+                            _vm._m(0),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-75" }, [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form.userId,
+                                    expression: "form.userId",
+                                  },
+                                ],
+                                attrs: {
+                                  type: "number",
+                                  id: "userId",
+                                  name: "userId",
+                                  placeholder: "UserId",
+                                },
+                                domProps: { value: _vm.form.userId },
+                                on: {
+                                  input: function ($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.form,
+                                      "userId",
+                                      $event.target.value
+                                    )
+                                  },
+                                },
+                              }),
+                            ]),
+                          ]),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "flex flex-wrap" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form.title,
+                                expression: "form.title",
+                              },
+                            ],
+                            staticClass: "form-input w-full",
+                            attrs: {
+                              id: "search",
+                              type: "text",
+                              name: "search",
+                              placeholder: "title",
+                              required: "",
+                              autofocus: "",
+                            },
+                            domProps: { value: _vm.form.title },
+                            on: {
+                              input: function ($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(_vm.form, "title", $event.target.value)
+                              },
+                            },
+                          }),
+                          _vm._v(" "),
+                          _c("br"),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "flex flex-wrap" }, [
+                          _c("textarea", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form.body,
+                                expression: "form.body",
+                              },
+                            ],
+                            staticClass: "form-input w-full",
+                            attrs: {
+                              id: "todo",
+                              type: "text",
+                              name: "todo",
+                              rows: "5",
+                              required: "",
+                              autofocus: "",
+                            },
+                            domProps: { value: _vm.form.body },
+                            on: {
+                              input: function ($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(_vm.form, "body", $event.target.value)
+                              },
+                            },
+                          }),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "flex flex-wrap" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass:
+                                " addFormButton w-full mb-5 select-none font-bold whitespace-no-wrap p-3 rounded-lg text-base leading-normal no-underline text-gray-100 bg-blue-500 hover:bg-blue-700 sm:py-4",
+                              on: {
+                                click: function ($event) {
+                                  $event.preventDefault()
+                                  _vm.isEdit
+                                    ? _vm.updatePost()
+                                    : _vm.submitPost()
+                                },
+                              },
+                            },
+                            [
+                              _vm._v(
+                                "\n\n                                " +
+                                  _vm._s(
+                                    _vm.isEdit
+                                      ? "UPDATE POST DETAILS"
+                                      : "ADD POST"
+                                  ) +
+                                  "\n                            "
+                              ),
+                            ]
+                          ),
+                        ]),
+                      ]
+                    ),
+                  ]
+                ),
               ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group mb-6" }, [
-                _c("textarea", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.form.body,
-                      expression: "form.body",
-                    },
-                  ],
-                  staticClass:
-                    "\n        form-control\n        block\n        w-full\n        px-3\n        py-1.5\n        text-gray-700\n        bg-white bg-clip-padding\n        border border-solid border-gray-300\n        rounded\n        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none\n      ",
-                  attrs: {
-                    name: "body",
-                    rows: "5",
-                    placeholder: "body",
-                    required: "",
-                  },
-                  domProps: { value: _vm.form.body },
-                  on: {
-                    input: function ($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.form, "body", $event.target.value)
-                    },
-                  },
-                }),
-              ]),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass:
-                    "\n      w-full\n      p-3\n      bg-blue-600\n      text-white\n      leading-tight\n      uppercase\n      rounded",
-                  on: {
-                    click: function ($event) {
-                      $event.preventDefault()
-                      _vm.isEdit ? _vm.updatePost() : _vm.submitPost()
-                    },
-                  },
-                },
-                [
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(_vm.isEdit ? "UPDATE POST DETAILS" : "ADD POST") +
-                      "\n                "
-                  ),
-                ]
-              ),
             ]),
           ]
         )
       : _vm._e(),
     _vm._v(" "),
-    _c("table", { staticClass: "table" }, [
-      _vm._m(0),
-      _vm._v(" "),
+    _c("div", { staticStyle: { "overflow-x": "auto" } }, [
       _c(
-        "tbody",
-        _vm._l(_vm.posts, function (post, index) {
-          return _c("tr", [
-            _c("td", { attrs: { "data-label": "title" } }, [
-              _vm._v(_vm._s(post.title)),
-            ]),
-            _vm._v(" "),
-            _c("td", { attrs: { "data-label": " body" } }, [
-              _vm._v(_vm._s(post.body)),
-            ]),
-            _vm._v(" "),
-            _c("td", { staticClass: "flex" }, [
-              _c(
-                "button",
-                {
-                  staticClass:
-                    "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded",
-                  on: {
-                    click: function ($event) {
-                      return _vm.editPost(post)
-                    },
-                  },
-                },
-                [
-                  _vm._v(
-                    "\n                                                                    EDIT\n                                                                "
-                  ),
-                ]
-              ),
+        "table",
+        [
+          _vm._m(1),
+          _vm._v(" "),
+          _vm._l(_vm.posts, function (post) {
+            return _c("tr", { key: post.id }, [
+              _c("th", [_vm._v(_vm._s(post.title))]),
               _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass:
-                    "  ml-5 bg-red-500 hover:bg-maroon-700 text-white font-bold py-2 px-4 border  rounded",
-                  on: {
-                    click: function ($event) {
-                      return _vm.deletePost(post)
+              _c("th", [_vm._v(_vm._s(post.body))]),
+              _vm._v(" "),
+              _c("td", { staticClass: "flex" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass:
+                      "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded",
+                    on: {
+                      click: function ($event) {
+                        return _vm.editPost(post)
+                      },
                     },
                   },
-                },
-                [
-                  _vm._v(
-                    "\n                                                                    DELETE\n                                                                "
-                  ),
-                ]
-              ),
-            ]),
-          ])
-        }),
-        0
+                  [
+                    _vm._v(
+                      "\n                        EDIT\n                    "
+                    ),
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass:
+                      "  ml-5 bg-red-500 hover:bg-maroon-700 text-white font-bold py-2 px-4 border  rounded",
+                    on: {
+                      click: function ($event) {
+                        return _vm.deletePost(post)
+                      },
+                    },
+                  },
+                  [
+                    _vm._v(
+                      "\n                        DELETE\n                    "
+                    ),
+                  ]
+                ),
+              ]),
+            ])
+          }),
+        ],
+        2
       ),
     ]),
   ])
@@ -33484,14 +33611,20 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", [_vm._v(" Title")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Body")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Action")]),
-      ]),
+    return _c("div", { staticClass: "col-25" }, [
+      _c("label", { attrs: { for: "userId" } }, [_vm._v("User Id")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", [_vm._v("Title")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Body")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Action")]),
     ])
   },
 ]

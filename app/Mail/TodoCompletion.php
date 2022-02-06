@@ -10,15 +10,15 @@ use Illuminate\Queue\SerializesModels;
 class TodoCompletion extends Mailable
 {
     use Queueable, SerializesModels;
-
+    public $details;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($details)
     {
-        //
+        $this->details = $details;
     }
 
     /**
@@ -28,7 +28,9 @@ class TodoCompletion extends Mailable
      */
     public function build(): TodoCompletion
     {
-        return $this->from('test@test.com')->view('emails.todoCompletion');
+        return $this
+            ->from('todoservice@gmailcom')
+            ->view('emails.todoCompletion');
 
     }
 }
